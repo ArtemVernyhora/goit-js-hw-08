@@ -1,12 +1,12 @@
 import throttle from 'lodash.throttle';
-const feedback = document.querySelector('.feedback-form');
+const feedbackForm = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-msg';
 const formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
 popularTextArea();
 
-feedback.addEventListener('submit', onFormSubmit);
-feedback.addEventListener('input', throttle(onTextInput, 500));
+feedbackForm.addEventListener('submit', onFormSubmit);
+feedbackForm.addEventListener('input', throttle(onTextInput, 500));
 
 function onTextInput({ target }) {
   formData[target.name] = target.value;
@@ -21,6 +21,6 @@ function onFormSubmit(e) {
 }
 
 function popularTextArea() {
-  feedback.message.value = formData.message || '';
-  feedback.email.value = formData.email || '';
+  feedbackForm.message.value = formData.message || '';
+  feedbackForm.email.value = formData.email || '';
 }
